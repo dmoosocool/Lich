@@ -6,13 +6,19 @@
 
     var test = Lich.extends({
         events: {
-            'click body .test': 'E_ClickBodyTest'
+            'click body .hhhh': 'E_ClickBodyTestasd'
+        },
+
+        handlers: {
+            'E_ClickBodyTestasd': function (data) {
+                console.log(data);
+            }
         },
 
         init: function () {
-            console.log('this is Test.');
+            // console.log('this is Test.');
         }
     });
 
-    console.log(test);
+    // console.log(test);
 }(window, jQuery));
