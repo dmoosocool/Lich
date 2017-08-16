@@ -1,32 +1,125 @@
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>GetUserMedia实例</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>WebApp启动页</title>
+    <style type="text/css">
+        body{
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        input{
+            padding: .2rem;
+            margin: .5rem auto 0 auto;
+            font-size: .5rem;
+            border-radius: .5rem;
+            display: block;
+            width: 5rem;
+            color: red;
+            background: white;
+        }
+        #CameraInfo{
+            line-height: .6rem;
+            font-size: .35rem;
+            color: red;
+            padding: .3rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<video id="video" autoplay></video>
-</body>
-
-
+    <input type="button" value="开始拍照" id="CaptureImage" />
+    <input type="button" value="开始摄像" id="StartVideoCapture" />
+    <input type="button" value="结束摄像" id="StopVideoCapture">
+    <input type="button" value="返回主页" id="ReturnIndex" />
+    <div id="CameraInfo"></div>
+    
+<script src="../lib/jquery.3.2.1.min.js"></script>
 <script type="text/javascript">
-    var getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
-
-    getUserMedia.call(navigator, {
-        video: true,
-        audio: true
-    }, function(localMediaStream) {
-        var video = document.getElementById('video');
-        video.src = window.URL.createObjectURL(localMediaStream);
-        video.onloadedmetadata = function(e) {
-            console.log("Label: " + localMediaStream.label);
-            console.log("AudioTracks" , localMediaStream.getAudioTracks());
-            console.log("VideoTracks" , localMediaStream.getVideoTracks());
-        };
-    }, function(e) {
-        console.log('Reeeejected!', e);
+    /**
+     * 页面布局rem重置语句
+     */
+    $('html').css("font-size", $(window).width()/10);
+    
+    /**
+     * 手机端页面初始化事件, 所有操作均要写在在该事件内
+     * 否则可能会出现错误: plus is not defind
+     */
+    document.addEventListener('plusready', function(){
+        /**
+         * 返回首页的事件
+         */
+        $('#ReturnIndex').on('touchstart', function(){
+            location.href = 'Index.html';
+        });
+        
+        /*
+         * 获取摄像头管理对象 var camera = plus.camera.getCamera( index )
+         *     index: 1 -> 主摄像头, 2 -> 辅助摄像头, 默认 1
+         * camera 的四个可获取的属性:
+         *     supportedImageResolutions: 摄像头支持的拍照分辨率数组, 如 ["400*800"]
+         *     supportedVideoResolutions: 摄像头支持的摄像分辨率数组, 如 ["400*800"]
+         *     supportedImageFormats: 摄像头支持的拍照文件格式数组, 如["jpg", "png", "bmp"]
+         *     supportedVideoFormats: 摄像头支持的摄像文件格式数组, 如["3gp", "mp4", "avi"]
+         */
+        var camera = plus.camera.getCamera(1);
+        var str = '';
+        for(var i = 0; i < camera.supportedImageResolutions.length; i++){
+            str += '拍照分辨率: ' + camera.supportedImageResolutions[i] + '<br>';
+        }
+        for(var i = 0; i < camera.supportedVideoResolutions.length; i++){
+            str += '摄像分辨率: ' + camera.supportedVideoResolutions[i] + '<br>';
+        }
+        for(var i = 0; i < camera.supportedImageFormats.length; i++){
+            str += '拍照格式: ' + camera.supportedImageFormats[i] + '<br>';
+        }
+        for(var i = 0; i < camera.supportedVideoFormats.length; i++){
+            str += '摄像格式: ' + camera.supportedVideoFormats[i] + '<br>';
+        }
+        $('#CameraInfo').html(str);
+        
+        /**
+         * 开始拍照的方法: camera.captureImage(A(), B(), option)
+         * 开始摄像的方法: camera.startVideoCapture( A(), B(), option )
+         * captureImage 和  startVideoCapture的参数相同 如下:
+         *       A(capturedFile): 调用成功的回调函数
+         *           capturedFile: 文件保存地址
+         *       B(error): 调用失败的回调函数
+         *           error.code: 错误编码
+         *           error.message: 错误描述
+         *       option:{
+         *           filename: 图片的保存路径, 如 "_doc/camera/" 
+         *           format: 文件格式(string), 如 "jpg"
+         *           index: 拍照或摄像界面默认使用的摄像头编号，1表示主摄像头，2表示辅摄像头
+         *           popover: {  默认居中
+         *               top: 上边距,
+         *               left: 左边距,
+         *               width: 宽,
+         *               height: 高
+         *           } 
+         *       }
+         * 结束摄像的方法: camera.stopVideoCapture(), 一般情况下没有必要
+         */
+        $('#CaptureImage').on('touchstart', function(){
+            camera.captureImage(function(fileUrl){
+                $('#CameraInfo').html(fileUrl);
+            }, function(error){
+                $('#CameraInfo').html(error.code + ': ' + error.message);
+            });
+        });
+        $('#StartVideoCapture').on('touchstart', function(){
+            camera.startVideoCapture(function(fileUrl){
+                $('#CameraInfo').html(fileUrl);
+            }, function(error){
+                $('#CameraInfo').html(error.code + ': ' + error.message);
+            });
+        });
+        $('#StartVideoCapture').on('touchstart', function(){
+            camera.stopVideoCapture();
+        });
     });
 </script>
-
-
+</body>
 </html>
