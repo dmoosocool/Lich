@@ -1,0 +1,31 @@
+{
+  "name": "lich",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node node_modules/gulp/bin/gulp.js --type dev --channel suning"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmoosocool/Lich.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmoosocool/Lich/issues"
+  },
+  "homepage": "https://github.com/dmoosocool/Lich#readme",
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
+    "browser-sync": "^2.18.13",
+    "gulp": "gulpjs/gulp#4.0",
+    "gulp-util": "^3.0.8"
+  }
+}
