@@ -1,19 +1,19 @@
 /**
  * Created by guoxin on 2017/8/11.
  */
-+(function(window, $, undefined) {
++(function (window, $, undefined) {
     var Lich = {
-        init: function() {
+        init: function () {
             // 事件解析.
             Utils.bindEvents(Lich.events, Lich.handlers);
         },
 
-        /** 
+        /**
          * 继承
          * @param  {[object]} subClass [子类]
          * @return {[object]}          [继承类]
          */
-        extends: function(subClass) {
+        extends: function (subClass) {
             var parentInit = Lich.init;
             // 深拷贝
             $.extend(true, Lich, subClass);

@@ -2,15 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>WebApp启动页</title>
     <style type="text/css">
-        body{
+        body {
             width: 100%;
             padding: 0;
             margin: 0;
         }
-        input{
+
+        input {
             padding: .2rem;
             margin: .5rem auto 0 auto;
             font-size: .5rem;
@@ -20,7 +21,8 @@
             color: red;
             background: white;
         }
-        #CameraInfo{
+
+        #CameraInfo {
             line-height: .6rem;
             font-size: .35rem;
             color: red;
@@ -30,31 +32,31 @@
     </style>
 </head>
 <body>
-    <input type="button" value="开始拍照" id="CaptureImage" />
-    <input type="button" value="开始摄像" id="StartVideoCapture" />
-    <input type="button" value="结束摄像" id="StopVideoCapture">
-    <input type="button" value="返回主页" id="ReturnIndex" />
-    <div id="CameraInfo"></div>
-    
+<input type="button" value="开始拍照" id="CaptureImage"/>
+<input type="button" value="开始摄像" id="StartVideoCapture"/>
+<input type="button" value="结束摄像" id="StopVideoCapture">
+<input type="button" value="返回主页" id="ReturnIndex"/>
+<div id="CameraInfo"></div>
+
 <script src="../lib/jquery.3.2.1.min.js"></script>
 <script type="text/javascript">
     /**
      * 页面布局rem重置语句
      */
-    $('html').css("font-size", $(window).width()/10);
-    
+    $('html').css("font-size", $(window).width() / 10);
+
     /**
      * 手机端页面初始化事件, 所有操作均要写在在该事件内
      * 否则可能会出现错误: plus is not defind
      */
-    document.addEventListener('plusready', function(){
+    document.addEventListener('plusready', function () {
         /**
          * 返回首页的事件
          */
-        $('#ReturnIndex').on('touchstart', function(){
+        $('#ReturnIndex').on('touchstart', function () {
             location.href = 'Index.html';
         });
-        
+
         /*
          * 获取摄像头管理对象 var camera = plus.camera.getCamera( index )
          *     index: 1 -> 主摄像头, 2 -> 辅助摄像头, 默认 1
@@ -66,20 +68,20 @@
          */
         var camera = plus.camera.getCamera(1);
         var str = '';
-        for(var i = 0; i < camera.supportedImageResolutions.length; i++){
+        for (var i = 0; i < camera.supportedImageResolutions.length; i++) {
             str += '拍照分辨率: ' + camera.supportedImageResolutions[i] + '<br>';
         }
-        for(var i = 0; i < camera.supportedVideoResolutions.length; i++){
+        for (var i = 0; i < camera.supportedVideoResolutions.length; i++) {
             str += '摄像分辨率: ' + camera.supportedVideoResolutions[i] + '<br>';
         }
-        for(var i = 0; i < camera.supportedImageFormats.length; i++){
+        for (var i = 0; i < camera.supportedImageFormats.length; i++) {
             str += '拍照格式: ' + camera.supportedImageFormats[i] + '<br>';
         }
-        for(var i = 0; i < camera.supportedVideoFormats.length; i++){
+        for (var i = 0; i < camera.supportedVideoFormats.length; i++) {
             str += '摄像格式: ' + camera.supportedVideoFormats[i] + '<br>';
         }
         $('#CameraInfo').html(str);
-        
+
         /**
          * 开始拍照的方法: camera.captureImage(A(), B(), option)
          * 开始摄像的方法: camera.startVideoCapture( A(), B(), option )
@@ -102,21 +104,21 @@
          *       }
          * 结束摄像的方法: camera.stopVideoCapture(), 一般情况下没有必要
          */
-        $('#CaptureImage').on('touchstart', function(){
-            camera.captureImage(function(fileUrl){
+        $('#CaptureImage').on('touchstart', function () {
+            camera.captureImage(function (fileUrl) {
                 $('#CameraInfo').html(fileUrl);
-            }, function(error){
+            }, function (error) {
                 $('#CameraInfo').html(error.code + ': ' + error.message);
             });
         });
-        $('#StartVideoCapture').on('touchstart', function(){
-            camera.startVideoCapture(function(fileUrl){
+        $('#StartVideoCapture').on('touchstart', function () {
+            camera.startVideoCapture(function (fileUrl) {
                 $('#CameraInfo').html(fileUrl);
-            }, function(error){
+            }, function (error) {
                 $('#CameraInfo').html(error.code + ': ' + error.message);
             });
         });
-        $('#StartVideoCapture').on('touchstart', function(){
+        $('#StartVideoCapture').on('touchstart', function () {
             camera.stopVideoCapture();
         });
     });

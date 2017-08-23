@@ -3,17 +3,9 @@
  */
 'use strict';
 import gulp from 'gulp';
-import {
-	server,
-	watch
-} from './gulpTasks/dev';
+import {server, watch} from './gulpTasks/dev';
 
-import {
-	buildHtml,
-	buildJs,
-	buildCss,
-	buildImage
-} from './gulpTasks/build';
+import {buildHtml, buildJs, buildCss, buildImage} from './gulpTasks/build';
 
 // gulp.series 		串行
 // gulp.parallel	并行
