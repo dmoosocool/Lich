@@ -10,7 +10,7 @@ author: dmoo.
 
 ## Lich.js 是什么?
 ```
-一个基于jQuery/zepto的简单强大易上手的脚手架.
+一个基于jQuery/zepto的简单强大易上手的脚手架.:red_car::red_car::red_car:
 ```
 
 ## Lich.js 可以做到什么?
