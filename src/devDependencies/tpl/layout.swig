@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <!-- 网页字符集 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- 缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- 网站开启对web app程序的支持（这meta的作用就是删除默认的苹果工具栏和菜单栏） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="yes" name="apple-touch-fullscreen"/>
+    <!-- 在web app应用下状态条（屏幕顶部条）的颜色
+      默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 忽略页面中的数字识别为电话号码 和电子邮件 -->
+    <meta content="telephone=no,email=no" name="format-detection"/>
+    <!-- flexible -->
+    <meta content="maximum-dpr=2" name="flexible"/>
+    <title>{% block title %}默认标题{% endblock %}</title>
+    {% block headerImport %}
+        {% include './import/header.swig' %}
+    {% endblock %}
+</head>
+<body>
+-
+</body>
+</html>

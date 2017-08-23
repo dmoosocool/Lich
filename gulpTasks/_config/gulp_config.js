@@ -21,8 +21,8 @@ exports.CONFIG = {
     path: {
         // 开发目录
         src: DEVELOPER_PATH,
-        html: path.join(DEVELOPER_PATH, '**/*.html'),
-        css: path.join(DEVELOPER_PATH, '**/*.css'),
+        swig: path.join(DEVELOPER_PATH, '**/*.swig'),
+        less: path.join(DEVELOPER_PATH, '**/*.less'),
         js: path.join(DEVELOPER_PATH, '**/*.js'),
         image: path.join(DEVELOPER_PATH, '**/*.+(png|jpg|gif)'),
 
