@@ -25,7 +25,7 @@
                     interface: 'GET_USER_INFO',
                     params: {
 
-                    }
+                    },
                 })
             }
         }
