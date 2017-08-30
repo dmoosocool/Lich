@@ -20,7 +20,10 @@
         {% include './import/header.swig' %}
     {% endblock %}
 </head>
-<body>
--
+<body class="{% block bodyClass%} {% endblock %}">
+
+{% block footerImport %}
+    {% include './import/footer.swig' %}
+{% endblock %}
 </body>
 </html>

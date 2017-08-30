@@ -1,15 +1,21 @@
 'use strict';
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
-import {CONFIG} from './_config/gulp_config';
+import { CONFIG } from './_config/gulp_config';
+import del from 'del';
 import {
     buildHtml,
     buildJs,
-    buildCss,
+    buildLess,
     buildImage
 } from './build';
 
 let server = browserSync.create();
+
+exports.clean = (done) => {
+    del.sync(CONFIG.path.publish);
+    done();
+};
 
 exports.server = (done) => {
     server.init(CONFIG.browserSync);
@@ -20,7 +26,7 @@ exports.watch = (done) => {
     let watcherQueue = [
         gulp.watch(CONFIG.path.html, buildHtml),
         gulp.watch(CONFIG.path.js, buildJs),
-        gulp.watch(CONFIG.path.css, buildCss),
+        gulp.watch(CONFIG.path.less, buildLess),
         gulp.watch(CONFIG.path.image, buildImage)
     ];
 

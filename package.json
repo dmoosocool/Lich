@@ -25,13 +25,16 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-latest": "^6.24.1",
     "browser-sync": "^2.18.13",
+    "del": "^3.0.0",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-htmlmin": "^3.0.0",
     "gulp-include": "^2.3.1",
     "gulp-less": "^3.3.2",
+    "gulp-lich-include": "^1.0.3",
     "gulp-swig": "^0.8.0",
     "gulp-util": "^3.0.8",
     "less-plugin-autoprefix": "^1.5.1",
-    "less-plugin-functions": "^1.0.0"
+    "less-plugin-functions": "^1.0.0",
+    "zepto": "^1.2.0"
   }
 }

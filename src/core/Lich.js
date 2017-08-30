@@ -37,4 +37,4 @@
     };
 
     window.Lich = Lich;
-}(window, jQuery));
+}(window, Zepto));

@@ -25,7 +25,6 @@ exports.CONFIG = {
         less: path.join(DEVELOPER_PATH, '**/*.less'),
         js: path.join(DEVELOPER_PATH, '**/*.js'),
         image: path.join(DEVELOPER_PATH, '**/*.+(png|jpg|gif)'),
-
         publish: PUBLISH_PATH,
     }
 };

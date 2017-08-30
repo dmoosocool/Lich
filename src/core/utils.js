@@ -1,4 +1,3 @@
-//@formatter:off
 /**
  * Lich工具类.
  */
@@ -51,5 +50,4 @@
         }
     };
     window.Utils = Utils;
-}(window, jQuery));
-//@formatter:on
+}(window, Zepto));
