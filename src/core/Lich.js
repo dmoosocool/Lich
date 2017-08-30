@@ -8,6 +8,10 @@
             Utils.bindEvents(Lich.events, Lich.handlers);
         },
 
+        request: function () {
+
+        },
+
         /**
          * 继承
          * @param  {[object]} subClass [子类]
@@ -25,7 +29,6 @@
 
             return Lich;
         },
-
         // 事件集合.
         events: {},
         // 事件回调集合.

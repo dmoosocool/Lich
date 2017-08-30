@@ -17,7 +17,6 @@ import through from 'through2';
  * 默认只移动文件.
  */
 exports.buildSwig = function () {
-
     const swigOpt = {
         defaults: {
             cache: false, // 不启用缓存.
