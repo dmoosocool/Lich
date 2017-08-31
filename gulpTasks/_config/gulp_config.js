@@ -26,5 +26,7 @@ exports.CONFIG = {
         js: path.join(DEVELOPER_PATH, '**/*.js'),
         image: path.join(DEVELOPER_PATH, '**/*.+(png|jpg|gif)'),
         publish: PUBLISH_PATH,
+        server: path.join(path.dirname(__filename), 'server.config.js'),
+        interface: path.join(path.dirname(__filename), 'interface.config.js'),
     }
 };

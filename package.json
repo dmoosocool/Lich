@@ -8,7 +8,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node node_modules/gulp/bin/gulp.js --type dev --channel suning"
+    "developer": "node ./node_modules/gulp/bin/gulp.js",
+    "alipay-dev": "node ./node_modules/gulp/bin/gulp.js publish --type dev --channel alipay",
+    "alipay-stg": "node ./node_modules/gulp/bin/gulp.js publish --type stg --channel alipay",
+    "alipay-beta": "node ./node_modules/gulp/bin/gulp.js publish --type bata --channel alipay",
+    "alipay-prd": "node ./node_modules/gulp/bin/gulp.js publish --type prd --channel alipay"
   },
   "repository": {
     "type": "git",

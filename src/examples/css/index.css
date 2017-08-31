@@ -1,0 +1,6 @@
+body {
+  background-color: #5b83ad;
+}
+body #test {
+  height: px2rem(1000);
+}

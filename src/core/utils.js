@@ -5,6 +5,7 @@
     var Utils = {
         /**
          * 绑定事件.
+         *
          * @param  {[type]} bindObj     [Lich.events 需要绑定事件的集合]
          * @param  {[type]} callbackObj [Lich.handlers 绑定事件回调的集合]
          * @return {[null]}             [description]
@@ -47,6 +48,78 @@
                     });
                 }
             });
+        },
+
+        /**
+         * 根据服务和接口返回完整的服务器接口地址
+         *
+         * @param service       {string}    [服务器]
+         * @param interface     {string}    [接口名]
+         * @return              {string}    [完整的接口地址]
+         */
+        getRequestUrl: function (service, interface) {
+            // 简单处理, 如果service最后一位有'/'字符的话就去掉.
+            service = window.KH_SERVICE.SERVICE[service];
+            interface = window.KH_SERVICE.INTERFACE[interface];
+            // 如果service最后一位有'/'字符的话就去掉.
+            service = ('/' !== service.charAt(service.length - 1)) ? service : service.slice(0, service.length - 1);
+            // 如果interface第一位有'/'字符的话就去掉.
+            interface = ('/' !== interface.charAt(0)) ? interface : interface.slice(1, interface.length);
+            // 使用服务器地址加上接口地址拼接成完整的请求地址.
+            return [service, interface].join('/');
+        },
+
+        /**
+         * 获取Filter
+         */
+        getFilter: function (filters) {
+            var queue = [];
+            filters.forEach(function (item) {
+                var filterKey = item.split('.')[0],
+                    filterFunc = item.split('.')[1];
+
+                queue.push(window.KH_FILTER[filterKey][filterFunc]);
+            });
+            return queue;
+        },
+
+        /**
+         * 获取公共Filter.
+         */
+        getCommonFilter: function () {
+            var commonFilter = window.KH_FILTER['common'],
+                resultArr = [];
+            for (var i in commonFilter) {
+                resultArr.push(['common', i].join('.'));
+            }
+            return resultArr;
+        },
+
+        /**
+         * 执行Filter.
+         * @description 默认执行 KH_FILTER中common里面的Filter.
+         * @param data          {JSONObject}                [Ajax results.]
+         * @param filters       {array}                 [Filter队列.]
+         * @return              {JSONObject}         [返回处理完成的数据]
+         */
+        runFilter: function (data, filters) {
+            var filterQueue = [],
+                commonFilter = Utils.getFilter(Utils.getCommonFilter()),
+                userFilter = Utils.getFilter(filters);
+
+            // 将commonFilter 添加到FilterQueue队列中.
+            filterQueue.push.apply(filterQueue, commonFilter);
+
+            // 将userFilter 添加到FilterQueue队列中.
+            filterQueue.push.apply(filterQueue, userFilter);
+
+            // 执行filter队列.并将filter处理过后的数据返回.
+            filterQueue.forEach(function (filter) {
+                data = filter(data);
+            });
+
+            // 处理完成的数据.
+            return data;
         }
     };
     window.Utils = Utils;

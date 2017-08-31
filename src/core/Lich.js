@@ -8,8 +8,45 @@
             Utils.bindEvents(Lich.events, Lich.handlers);
         },
 
-        request: function () {
+        request: function (options) {
+            var callback = this.callbacks[options.callback],
+                emptyCallback = function emptyCallback() { console.log(arguments); },
+                url = Utils.getRequestUrl(options.service, options.interface),
+                params = {
+                    type: options.type || 'POST',
+                    header: options.header || {},
+                    url: url,
+                    params: options.params,
+                    dataType: 'json'
+                };
 
+            // 发送前,
+            params.beforeSend = function (xhr, status) {
+                let userBeforeSend = callback.beforeSend || emptyCallback;
+                userBeforeSend(xhr, status);
+            };
+
+            // 成功,
+            params.success = function (data, status, xhr) {
+                let userSuccess = callback.success || emptyCallback;
+                // 将处理完成的数据返回给前端.
+                data = Utils.runFilter(data, options.filters);
+                userSuccess(data, status, xhr);
+            };
+
+            // 失败,
+            params.error = function (xhr, errorType, error) {
+                let userError = callback.error || emptyCallback;
+                userError(xhr, errorType, error);
+            };
+
+            // 完成回调,
+            params.complete = function (xhr, status) {
+                let userComplete = callback.complete || emptyCallback;
+                userComplete(xhr, status);
+            };
+
+            $.ajax(params);
         },
 
         /**
@@ -21,12 +58,10 @@
             var parentInit = Lich.init;
             // 深拷贝
             $.extend(true, Lich, subClass);
-
             // 默认执行父类初始化函数.
             parentInit();
             // 然后执行子类初始化函数.
             Lich.init();
-
             return Lich;
         },
         // 事件集合.

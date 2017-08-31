@@ -17,7 +17,7 @@
         },
 
         init: function () {
-            console.log(this.requests.queryUserInfo());
+            this.requests.queryUserInfo();
             console.log('this is index.js.');
         },
 
@@ -30,12 +30,12 @@
 
                 // 成功回调.
                 success: function (data, status, xhr) {
-                    console.log(resp);
+                    console.log(data);
                 },
 
                 // 失败回调.
                 error: function (xhr, errorType, error) {
-                    console.log(resp);
+
                 },
 
                 // 完成回调.
@@ -47,10 +47,6 @@
 
         requests: {
             queryUserInfo: function () {
-
-                var common_filter = function common_filter(resp) {
-
-                };
                 /**
                  *
                  * filter: 是一个数组可以自动将接口返回的数据进行处理.
@@ -60,11 +56,16 @@
                  * 通用回调处理.
                  */
                 Lich.request({
-                    filter: [
+                    filters: [
+                        'other.otherFilter'
                     ],
-                    service: 'USER-CENTER',
-                    interface: 'USER-INFO',
-                    params: {}
+                    service: 'ZHAIYAN',
+                    interface: 'RANDS',
+                    params: {
+                        username: 'abc',
+                        password: '123',
+                    },
+                    callback: 'queryUserInfo'
                 });
             }
         }
