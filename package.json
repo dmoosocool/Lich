@@ -39,6 +39,7 @@
     "gulp-util": "^3.0.8",
     "less-plugin-autoprefix": "^1.5.1",
     "less-plugin-functions": "^1.0.0",
+    "lodash": "^4.17.4",
     "zepto": "^1.2.0"
   }
 }

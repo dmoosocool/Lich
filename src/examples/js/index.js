@@ -4,7 +4,7 @@
  * @date 2017-08-30 16:27
  * @description
  */
-+(function (global, $, undefined) {
++(function (global, $, _, undefined) {
     var test = Lich.extends({
         events: {
             'click .test': 'E_ClickBodyTest'
@@ -30,7 +30,10 @@
 
                 // 成功回调.
                 success: function (data, status, xhr) {
-                    console.log(data);
+
+                    var el = $('#testTplContainer'),
+                        tpl = _.template($('#testTpl').html())
+                    el.html(tpl({ data: data }));
                 },
 
                 // 失败回调.
@@ -70,4 +73,4 @@
             }
         }
     });
-}(window, Zepto));
+}(window, Zepto, _));

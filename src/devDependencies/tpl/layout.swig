@@ -22,6 +22,9 @@
 </head>
 <body class="{% block bodyClass%} {% endblock %}">
 
+{% block content %}
+{% endblock %}
+
 {% block footerImport %}
     {% include './import/footer.swig' %}
 {% endblock %}
