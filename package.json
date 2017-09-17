@@ -7,12 +7,17 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "developer": "node ./node_modules/gulp/bin/gulp.js",
+    "developer-alipay": "node ./node_modules/gulp/bin/gulp.js --type dev --channel alipay",
+    "developer-suning": "node ./node_modules/gulp/bin/gulp.js --type dev --channel suning",
     "alipay-dev": "node ./node_modules/gulp/bin/gulp.js publish --type dev --channel alipay",
     "alipay-stg": "node ./node_modules/gulp/bin/gulp.js publish --type stg --channel alipay",
-    "alipay-beta": "node ./node_modules/gulp/bin/gulp.js publish --type bata --channel alipay",
-    "alipay-prd": "node ./node_modules/gulp/bin/gulp.js publish --type prd --channel alipay"
+    "alipay-beta": "node ./node_modules/gulp/bin/gulp.js publish --type beta --channel alipay",
+    "alipay-prd": "node ./node_modules/gulp/bin/gulp.js publish --type prd --channel alipay",
+    "suning-dev": "node ./node_modules/gulp/bin/gulp.js publish --type dev --channel suning",
+    "suning-stg": "node ./node_modules/gulp/bin/gulp.js publish --type stg --channel suning",
+    "suning-beta": "node ./node_modules/gulp/bin/gulp.js publish --type beta --channel suning",
+    "suning-prd": "node ./node_modules/gulp/bin/gulp.js publish --type prd --channel suning"
   },
   "repository": {
     "type": "git",
@@ -31,15 +36,22 @@
     "browser-sync": "^2.18.13",
     "del": "^3.0.0",
     "gulp": "gulpjs/gulp#4.0",
+    "gulp-clean-css": "^3.8.0",
     "gulp-htmlmin": "^3.0.0",
     "gulp-include": "^2.3.1",
     "gulp-less": "^3.3.2",
-    "gulp-lich-include": "^1.0.3",
+    "gulp-lich-include": "^1.0.5",
+    "gulp-replace": "^0.6.1",
+    "gulp-rev": "^8.0.0",
+    "gulp-rev-collector": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.1",
     "gulp-swig": "^0.8.0",
+    "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
     "less-plugin-autoprefix": "^1.5.1",
     "less-plugin-functions": "^1.0.0",
     "lodash": "^4.17.4",
+    "mocha": "^3.5.0",
     "zepto": "^1.2.0"
   }
 }

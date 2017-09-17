@@ -5,7 +5,7 @@ module.exports = {
     devDir: path.resolve(process.cwd(), 'src'),
     distDir: path.resolve(process.cwd(), 'dist'),
     // template extension.
-    tplExtension: '.swig',
+    tplExtension: '.ejs',
 
     // javascript extension.
     jsExtension: '.js',

@@ -10,21 +10,20 @@ author: dmoo.
 
 ## Lich.js 是什么?
 ```
-一个基于jQuery/zepto的简单强大易上手的脚手架.
+一个基于zepto的简单强大易上手的脚手架.
 ```
 
 ## Lich.js 可以做到什么?
-
 - [x] 前端底层框架：zepto, lodash.
 - [x] 多端调试方案：browserSync.
 - [x] 前端样式：less/sass.
 - [x] 移动端rem多端适配解决方案： flexiable.
 - [x] 前端构建模板：swig + gulp-Lich-include
-- [ ] 前端页面逻辑模板：lodash tpl.
-- [ ] 文档生成：jsdoc
-- [ ] 单元测试：mocha.
-- [ ] 本地存储缓存方案： localstorage. indexedb. mainifest. service worker.
-- [ ] 前端请求：fetch代替ajax
+- [x] 前端页面逻辑模板：lodash tpl.
+- [x] 单元测试：mocha + chai.
+- [x] 前端资源压缩：gulp-uglify, gulp-clean-css, gulp-htmlmin
+- [x] 前端代码防缓存：gulp-rev, gulp-rev-collector
+- [x] 前端资源合并：gulp-Lich-include
 
 ### 资源链接
  - [zepto](https://github.com/madrobby/zepto)
@@ -32,15 +31,13 @@ author: dmoo.
  - [browserSync](https://github.com/BrowserSync/browser-sync)
  - [flexiable](https://github.com/amfe/lib-flexible/tree/master)
  - [swig](https://github.com/amfe/lib-flexible/tree/master)
- - [yaml front-matter](https://www.npmjs.com/package/yaml-front-matter)
  - [lodash tpl](https://lodash.com/docs/#template)
- - [jsdoc](https://github.com/jsdoc3/jsdoc)
 
 ### 相关资源
  - [Swig 使用指南](http://www.iqianduan.net/blog/how_to_use_swig)
  - [HEXO 进阶-SWIG高级语法](http://www.joryhe.com/2016-05-21-hexo-swig-advance-grammar.html)
- - [yaml语言教程](http://www.ruanyifeng.com/blog/2016/07/yaml.html)
- - [JsDoc中文文档](http://www.css88.com/doc/jsdoc/index.html)
+ - [gulp-Lich-include](https://github.com/dmoosocool/gulp-Lich-include)
+ - 其他相关node插件自行查看[npm](https://www.npmjs.com)
 
 ## FAQ
 ### 命名由来

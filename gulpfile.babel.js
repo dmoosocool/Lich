@@ -3,25 +3,21 @@
  */
 'use strict';
 import gulp from 'gulp';
-import { server, watch, clean } from './gulpTasks/dev';
-import { buildSwig, buildJs, buildLess, buildImage, buildService } from './gulpTasks/build';
+import { runLocalServer, watch, clean } from './gulpTasks/dev';
+import { buildSwig, buildJs, buildLess, buildImage, buildService, buildMerge } from './gulpTasks/build';
+import { uglifyJs, uglifyCss, uglifyHtml, replaceSource, replaceManifest } from './gulpTasks/optimize';
 
 // gulp.series 		串行
 // gulp.parallel	并行
-// ======================================================== 设置任务名称-暂时没找到别的方式代替.
-server.displayName = 'server';
-watch.displayName = 'watch';
-buildSwig.displayName = 'buildSwig';
-buildJs.displayName = 'buildJs';
-buildLess.displayName = 'buildLess';
-buildImage.displayName = 'buildImage';
-buildService.displayName = 'buildService';
-clean.displayName = 'clean';
-// ========================================================
 
 // 开发环境
-const developer = gulp.series(server, watch);
-const build = gulp.series(clean, gulp.parallel(buildJs, buildLess, buildImage), buildSwig, buildService);
+const developer = gulp.series(runLocalServer, watch);
+const build = gulp.series(clean, gulp.parallel(buildJs, buildLess, buildImage), buildService, buildSwig);
+const optimize = gulp.series(gulp.parallel(uglifyJs, uglifyCss, uglifyHtml), replaceManifest, replaceSource);
+
 
 gulp.task('default', gulp.series(build, developer));
-gulp.task('publish', build);
+gulp.task('developer', gulp.series(build, developer));
+
+// 发布时才做代码压缩及优化.
+gulp.task('publish', gulp.series(build, optimize));

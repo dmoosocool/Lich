@@ -22,13 +22,13 @@
 
             // 发送前,
             params.beforeSend = function (xhr, status) {
-                let userBeforeSend = callback.beforeSend || emptyCallback;
+                var userBeforeSend = callback.beforeSend || emptyCallback;
                 userBeforeSend(xhr, status);
             };
 
             // 成功,
             params.success = function (data, status, xhr) {
-                let userSuccess = callback.success || emptyCallback;
+                var userSuccess = callback.success || emptyCallback;
                 // 将处理完成的数据返回给前端.
                 data = Utils.runFilter(data, options.filters);
                 userSuccess(data, status, xhr);
@@ -36,13 +36,13 @@
 
             // 失败,
             params.error = function (xhr, errorType, error) {
-                let userError = callback.error || emptyCallback;
+                var userError = callback.error || emptyCallback;
                 userError(xhr, errorType, error);
             };
 
             // 完成回调,
             params.complete = function (xhr, status) {
-                let userComplete = callback.complete || emptyCallback;
+                var userComplete = callback.complete || emptyCallback;
                 userComplete(xhr, status);
             };
 

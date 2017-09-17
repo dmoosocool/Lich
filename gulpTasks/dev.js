@@ -1,46 +1,63 @@
 'use strict';
 import gulp from 'gulp';
-import browserSync from 'browser-sync';
-import { CONFIG } from './_config/gulp_config';
+import { CONFIG } from './_config/gulp.config';
 import del from 'del';
+import browserSync from 'browser-sync';
 import {
-    buildHtml,
-    buildJs,
-    buildLess,
-    buildImage
-} from './build';
+    watchSwig,
+    watchJs,
+    watchLess,
+    watchImage
+} from './watch';
 
 let server = browserSync.create();
+exports.server = server;
 
-exports.clean = (done) => {
+
+exports.clean = function clean(done) {
     del.sync(CONFIG.path.publish);
     done();
 };
 
-exports.server = (done) => {
+exports.runLocalServer = function runLocalServer(done) {
     server.init(CONFIG.browserSync);
     done();
 };
 
-exports.watch = (done) => {
-    let watcherQueue = [
-        gulp.watch(CONFIG.path.html, buildHtml),
-        gulp.watch(CONFIG.path.js, buildJs),
-        gulp.watch(CONFIG.path.less, buildLess),
-        gulp.watch(CONFIG.path.image, buildImage)
-    ];
-
-    let reload = (event) => {
-        return gulp.src(event, {
-            base: CONFIG.path.src
+exports.watch = function watch(done) {
+    gulp.watch(CONFIG.path.swig, watchSwig)
+        .on('change', () => {
+            server.stream();
         })
-            .pipe(gulp.dest(CONFIG.path.publish))
-            .pipe(server.stream())
-    };
+        .on('add', () => {
+            server.stream();
+        });
 
-    watcherQueue.forEach(function (item) {
-        item.on('change', reload).on('add', reload);
-    });
+    gulp.watch(CONFIG.path.js, watchJs)
+        .on('change', () => {
+            server.stream();
+        })
+        .on('add', () => {
+            server.stream();
+        });
+
+    gulp.watch(CONFIG.path.less, watchLess)
+
+        .on('change', () => {
+            server.stream();
+        })
+        .on('add', () => {
+            server.stream();
+        });
+
+    gulp.watch(CONFIG.path.image, watchImage)
+
+        .on('change', () => {
+            server.stream();
+        })
+        .on('add', () => {
+            server.stream();
+        });
 
     done();
-};
+}
