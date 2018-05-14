@@ -22,7 +22,7 @@
         },
 
         callbacks: {
-            queryUserInfo: {
+            C_queryUserInfo: {
                 // 发送前,
                 beforeSend: function (xhr, status) {
 
@@ -64,11 +64,8 @@
                     ],
                     service: 'YIYAN',
                     interface: 'ANIME',
-                    params: {
-                        username: 'abc',
-                        password: '123',
-                    },
-                    callback: 'queryUserInfo'
+                    type: 'GET',
+                    callback: 'C_queryUserInfo'
                 });
             }
         }

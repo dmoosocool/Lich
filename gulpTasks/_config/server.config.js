@@ -1,21 +1,21 @@
 exports.ALL_SERVER = {
     // 开发环境.
     DEV: {
-        'YIYAN': 'http://v1.hitokoto.cn/'
+        'YIYAN': 'https://localhost:12345/yiyan'
     },
 
     // 测试环境
     STG: {
-        'YIYAN': 'http://v1.hitokoto.cn/'
+        'YIYAN': 'https://localhost:12345/yiyan'
     },
 
     // 预发布
     BETA: {
-        'YIYAN': 'http://v1.hitokoto.cn/'
+        'YIYAN': 'https://localhost:12345/yiyan'
     },
 
     // 生产
     PRD: {
-        'YIYAN': 'http://v1.hitokoto.cn/'
+        'YIYAN': 'https://localhost:12345/yiyan'
     }
 }

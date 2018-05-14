@@ -2,13 +2,16 @@
 import path from 'path';
 import lessAutoprefix from 'less-plugin-autoprefix';
 import lessFunction from 'less-plugin-functions';
-
+import url from 'url';
+import proxy from 'proxy-middleware';
 
 
 const PROJ_PATH = process.cwd();
 const DEVELOPER_PATH = path.join(PROJ_PATH, 'src');
 const PUBLISH_PATH = path.join(PROJ_PATH, 'dist');
 
+let yiyanProxy = url.parse('https://v1.hitokoto.cn/');
+    yiyanProxy.route = '/yiyan';
 
 let autoprefix = new lessAutoprefix({
     // 样式兼容ios5 android2.3及以上.
@@ -28,7 +31,7 @@ exports.CONFIG = {
         server: {
             baseDir: PUBLISH_PATH,
             directory: true,
-            // index: "index.html",
+            middleware: [proxy(yiyanProxy)]
         },
         port: 12345,
         cors: true,
