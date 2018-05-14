@@ -5,7 +5,6 @@
 {% block title %}Lich.js 案例.{% endblock %}
 <!-- 引用公用头部. -->
 {% block headerImport %}
-    {% parent %}
     <!-- 通过 gulp-lich-include 插件引用页面样式文件 -->
     <!-- Lich css-local="css/index.{channel}" -->
 {% endblock %}
@@ -23,7 +22,6 @@
 
 <!-- 引用公共脚本. -->
 {% block footerImport %}
-    {% parent %}
     <!-- 通过 gulp-lich-include 插件引用页面脚本文件. -->
     <!-- Lich js-local="../examples/js/index" -->
 {% endblock %}

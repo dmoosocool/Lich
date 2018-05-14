@@ -34,12 +34,6 @@ exports.CONFIG = {
         cors: true,
         open: false,
     },
-    // swig编译配置.
-    swigOpt: {
-        defaults: {
-            cache: false, // 不启用缓存.
-        }
-    },
     // less 配置.
     lessOpt: lessOpt,
 

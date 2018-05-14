@@ -1,8 +1,8 @@
 'use strict';
 import path from 'path';
 import gulp from 'gulp';
-import gutil from 'gulp-util';
-import swig from 'gulp-swig';
+import minimist from 'minimist';
+import template from 'gulp-nunjucks';
 import htmlmin from 'gulp-htmlmin';
 import include from 'gulp-lich-include';
 import less from 'gulp-less';
@@ -14,20 +14,20 @@ import includeConfig from './_config/Lich.rules.config';
 import { ALL_SERVER } from './_config/server.config';
 import { INTERFACE } from './_config/interface.config';
 import through from 'through2';
+import PluginError from 'plugin-error';
 
-let env = gutil.env;
+let env = minimist(process.argv.slice(2));
 let type = env.type ? env.type.toUpperCase() : 'DEV';
 let channel = env.channel ? env.channel.toUpperCase() : 'ALIPAY';
 
 /**
- * TODO: 根据 gutil.env的值来执行脚本.
  * 默认只移动文件.
  */
 
-// 编译swig.
-exports.buildSwig = function buildSwig() {
+// 编译template.
+exports.buildTemplate = function buildTemplate() {
     return gulp.src(CONFIG.path.swig, { base: CONFIG.path.src })
-        .pipe(swig(CONFIG.swigOpt))
+        .pipe(template.compile())
         // 注入渠道变量
         .pipe(include(includeConfig, { channel: channel.toLowerCase() }))
         .pipe(gulp.dest(CONFIG.path.publish));
@@ -60,7 +60,7 @@ exports.buildService = function buildService(done) {
     }
 
     if (!ALL_SERVER[type]) {
-        return done(new gutil.PluginError('Load Service', new Error(`{${type}} 该环境不存在, 请检查.`), { showStack: true }));
+        return done(new PluginError('Load Service', new Error(`{${type}} 该环境不存在, 请检查.`), { showStack: true }));
     }
 
     let returnString = `

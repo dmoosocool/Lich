@@ -4,7 +4,7 @@
 'use strict';
 import gulp from 'gulp';
 import { runLocalServer, watch, clean } from './gulpTasks/dev';
-import { buildSwig, buildJs, buildLess, buildImage, buildService, buildMerge } from './gulpTasks/build';
+import { buildTemplate, buildJs, buildLess, buildImage, buildService, buildMerge } from './gulpTasks/build';
 import { uglifyJs, uglifyCss, uglifyHtml, replaceSource, replaceManifest } from './gulpTasks/optimize';
 
 // gulp.series 		串行
@@ -12,7 +12,7 @@ import { uglifyJs, uglifyCss, uglifyHtml, replaceSource, replaceManifest } from 
 
 // 开发环境
 const developer = gulp.series(runLocalServer, watch);
-const build = gulp.series(clean, gulp.parallel(buildJs, buildLess, buildImage), buildService, buildSwig);
+const build = gulp.series(clean, gulp.parallel(buildJs, buildLess, buildImage), buildService, buildTemplate);
 const optimize = gulp.series(gulp.parallel(uglifyJs, uglifyCss, uglifyHtml), replaceManifest, replaceSource);
 
 
