@@ -1,21 +1,21 @@
 exports.ALL_SERVER = {
     // 开发环境.
     DEV: {
-        'ZHAIYAN': 'http://zhaiyan.2cys.com/api'
+        'YIYAN': 'http://v1.hitokoto.cn/'
     },
 
     // 测试环境
     STG: {
-        'ZHAIYAN': 'http://zhaiyan.2cys.com/api'
+        'YIYAN': 'http://v1.hitokoto.cn/'
     },
 
     // 预发布
     BETA: {
-        'ZHAIYAN': 'http://zhaiyan.2cys.com/api'
+        'YIYAN': 'http://v1.hitokoto.cn/'
     },
 
     // 生产
     PRD: {
-        'ZHAIYAN': 'http://zhaiyan.2cys.com/api'
+        'YIYAN': 'http://v1.hitokoto.cn/'
     }
 }

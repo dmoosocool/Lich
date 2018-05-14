@@ -1,10 +1,11 @@
 <!-- 继承模板. -->
-{% extends "../devDependencies/tpl/layout.swig" %}
+{% extends "./devDependencies/tpl/layout.njk" %}
 
 <!-- 设置页面Title. -->
 {% block title %}Lich.js 案例.{% endblock %}
 <!-- 引用公用头部. -->
 {% block headerImport %}
+    {{ super() }}
     <!-- 通过 gulp-lich-include 插件引用页面样式文件 -->
     <!-- Lich css-local="css/index.{channel}" -->
 {% endblock %}
@@ -17,11 +18,12 @@
     
     </div>
     <!-- 引用该页面的页面逻辑模板. -->
-    <!-- Lich tpl="./examples/tpl/index" -->
+    
 {% endblock %}
 
 <!-- 引用公共脚本. -->
 {% block footerImport %}
+    {{ super() }}
     <!-- 通过 gulp-lich-include 插件引用页面脚本文件. -->
     <!-- Lich js-local="../examples/js/index" -->
 {% endblock %}

@@ -32,6 +32,7 @@
     "gulp-less": "^3.3.2",
     "gulp-lich-include": "^1.0.5",
     "gulp-nunjucks": "^4.0.0",
+    "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.6.1",
     "gulp-rev": "^8.0.0",
     "gulp-rev-collector": "^1.2.2",
@@ -41,6 +42,7 @@
     "less-plugin-functions": "^1.0.0",
     "lodash": "^4.17.4",
     "mocha": "^3.5.0",
+    "nunjucks": "^3.1.2",
     "zepto": "^1.2.0"
   }
 }

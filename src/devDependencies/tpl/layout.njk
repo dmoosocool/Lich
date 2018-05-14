@@ -17,16 +17,18 @@
     <meta content="maximum-dpr=2" name="flexible"/>
     <title>{% block title %}默认标题{% endblock %}</title>
     {% block headerImport %}
-        {% include './import/header.swig' %}
+        <!-- Lich js-local="../vendor/flexible" -->
     {% endblock %}
 </head>
 <body class="{% block bodyClass%} {% endblock %}">
 
 {% block content %}
+    
 {% endblock %}
 
 {% block footerImport %}
-    {% include './import/footer.swig' %}
+<!-- Lich js-npm="zepto/dist/zepto.min,lodash/lodash.min" -->
+<!-- Lich js-local-merge="../core/Lich.min:../core/filter,../core/kh_service,../core/utils,../core/Lich" -->
 {% endblock %}
 </body>
 </html>

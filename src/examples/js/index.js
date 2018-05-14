@@ -62,8 +62,8 @@
                     filters: [
                         'other.otherFilter'
                     ],
-                    service: 'ZHAIYAN',
-                    interface: 'RANDS',
+                    service: 'YIYAN',
+                    interface: 'ANIME',
                     params: {
                         username: 'abc',
                         password: '123',

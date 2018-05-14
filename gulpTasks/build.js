@@ -3,6 +3,7 @@ import path from 'path';
 import gulp from 'gulp';
 import minimist from 'minimist';
 import template from 'gulp-nunjucks';
+import rename from 'gulp-rename';
 import htmlmin from 'gulp-htmlmin';
 import include from 'gulp-lich-include';
 import less from 'gulp-less';
@@ -28,6 +29,9 @@ let channel = env.channel ? env.channel.toUpperCase() : 'ALIPAY';
 exports.buildTemplate = function buildTemplate() {
     return gulp.src(CONFIG.path.swig, { base: CONFIG.path.src })
         .pipe(template.compile())
+        .pipe(rename({
+            extname: '.html'
+        }))
         // 注入渠道变量
         .pipe(include(includeConfig, { channel: channel.toLowerCase() }))
         .pipe(gulp.dest(CONFIG.path.publish));

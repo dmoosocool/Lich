@@ -70,7 +70,7 @@ exports.CONFIG = {
     path: {
         // 开发目录
         src: DEVELOPER_PATH,
-        swig: ['src/**/*.swig', '!src/devDependencies/**/*'],
+        swig: ['src/**/*.njk', '!src/devDependencies/**/*'],
         less: 'src/**/*.less',
         js: 'src/**/*.js',
         image: 'src/**/*.+(png|jpg|gif)',
