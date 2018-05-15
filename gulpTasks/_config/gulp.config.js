@@ -33,6 +33,7 @@ exports.CONFIG = {
             directory: true,
             middleware: [proxy(yiyanProxy)]
         },
+        https: true,
         port: 12345,
         cors: true,
         open: false,
